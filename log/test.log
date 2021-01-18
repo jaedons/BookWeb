@@ -1,0 +1,19 @@
+2021-01-15 17:42:16.504 [main] INFO  com.example.demo.BookWebApplication - Starting BookWebApplication using Java 1.8.0_25 on PC-20201212OFGW with PID 6104 (E:\work\develop\workspace\oomph\BookWeb\target\classes started by Administrator in E:\work\develop\workspace\oomph\BookWeb)
+2021-01-15 17:42:16.515 [main] INFO  com.example.demo.BookWebApplication - No active profile set, falling back to default profiles: default
+2021-01-15 17:42:17.715 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8090"]
+2021-01-15 17:42:17.715 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-01-15 17:42:17.715 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-01-15 17:42:17.792 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/SpringFunction] - Initializing Spring embedded WebApplicationContext
+2021-01-15 17:42:17.854 [main] INFO  com.example.demo.listener.CustomListenner - servletContextListener 创建……
+2021-01-15 17:42:17.859 [main] INFO  com.example.demo.filter.CustomFilter - 在执行  init 方法
+2021-01-15 17:42:18.420 [main] INFO  com.example.demo.config.WebConfig - 在执行 addInterceptor 方法
+2021-01-15 17:42:18.603 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8090"]
+2021-01-15 17:42:18.651 [main] INFO  com.example.demo.BookWebApplication - Started BookWebApplication in 2.73 seconds (JVM running for 3.664)
+2021-01-15 17:42:18.654 [main] INFO  com.example.demo.BookWebApplication - 启动项目
+2021-01-15 17:42:34.558 [http-nio-8090-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/SpringFunction] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-15 17:42:34.594 [http-nio-8090-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2021-01-15 17:42:34.875 [http-nio-8090-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2021-01-15 17:43:25.908 [RMI TCP Connection(2)-127.0.0.1] INFO  com.example.demo.filter.CustomFilter - 在执行  destroy 方法
+2021-01-15 17:43:25.908 [RMI TCP Connection(2)-127.0.0.1] INFO  com.example.demo.listener.CustomListenner - servletContextListener 销毁……
+2021-01-15 17:43:25.921 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2021-01-15 17:43:25.941 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
