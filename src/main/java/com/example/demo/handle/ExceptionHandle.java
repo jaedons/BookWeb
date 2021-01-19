@@ -22,9 +22,9 @@ public class ExceptionHandle {
 
         // 是否属于自定义异常
         if (e instanceof ContextException) {
-            ContextException ContextException = (ContextException) e;
+            ContextException contextException = (ContextException) e;
 
-            return MessageUtil.error(ContextException.getCode(), ContextException.getMessage());
+            return MessageUtil.error(contextException.getCode(), contextException.getMessage());
         } else {
             logger.error("系统异常 {}", e);
             return MessageUtil.error(MessageUtil.EROOR_CODE2, "系统异常!");

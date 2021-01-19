@@ -13,7 +13,7 @@ import com.example.demo.service.BookService;
 
 @Transactional
 @Service("bookServiceDB")
-public class BookServiceImplDB implements BookService {
+public class BookServiceDBImpl implements BookService {
 
     @Autowired
     private BookMapper bookMapper;
