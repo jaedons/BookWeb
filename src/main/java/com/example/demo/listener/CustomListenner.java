@@ -7,6 +7,11 @@ import javax.servlet.annotation.WebListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 监听器
+ * @author Administrator
+ *
+ */
 @WebListener
 public class CustomListenner implements ServletContextListener {
     private final Logger logger = LoggerFactory.getLogger(CustomListenner.class);

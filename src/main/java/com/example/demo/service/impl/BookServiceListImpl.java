@@ -19,7 +19,7 @@ import com.example.demo.service.BookService;
  *
  */
 @Service("bookService")
-public class BookServiceImplList implements BookService {
+public class BookServiceListImpl implements BookService {
 
     private static final AtomicLong counter = new AtomicLong();
 

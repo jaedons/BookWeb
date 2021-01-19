@@ -3,7 +3,6 @@ package com.example.demo.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +12,7 @@ import com.example.demo.service.BookService;
 
 @Transactional
 @Service("bookServiceDB")
-public class BookServiceImplDB implements BookService {
+public class BookServiceDBImpl implements BookService {
 
     @Autowired
     private BookMapper bookMapper;

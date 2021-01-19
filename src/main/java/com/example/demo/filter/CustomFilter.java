@@ -14,6 +14,11 @@ import org.apache.logging.log4j.core.config.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 自定义过滤器
+ * @author Administrator
+ *
+ */
 @WebFilter(filterName = "customFilter",urlPatterns = "/")
 @Order(value = 1)
 public class CustomFilter implements Filter {

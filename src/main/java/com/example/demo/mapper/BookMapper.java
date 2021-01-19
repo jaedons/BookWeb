@@ -8,6 +8,11 @@ import org.apache.ibatis.annotations.Param;
 import com.example.demo.domain.Book;
 
 
+/**
+ * Mybatis mapper 映射
+ * @author Administrator
+ *
+ */
 @Mapper
 public interface BookMapper {
     /** 查询所有 */

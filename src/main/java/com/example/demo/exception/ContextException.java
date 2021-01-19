@@ -2,6 +2,12 @@ package com.example.demo.exception;
 
 import com.example.demo.constant.MessageEnum;
 
+/**
+ *   自定义异常
+ * @author Administrator
+ *
+ */
+@SuppressWarnings("serial")
 public class ContextException extends RuntimeException {
     private Integer code;
 

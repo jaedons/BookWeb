@@ -8,6 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ *  自定义拦截器
+ * @author Administrator
+ *
+ */
 public class CustomInterceptor implements HandlerInterceptor {
     
     private final Logger logger = LoggerFactory.getLogger(CustomInterceptor.class);

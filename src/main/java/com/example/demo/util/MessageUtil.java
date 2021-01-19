@@ -2,6 +2,11 @@ package com.example.demo.util;
 
 import com.example.demo.domain.Result;
 
+/**
+ * 异常信息工具类
+ * @author Administrator
+ *
+ */
 public class MessageUtil {
 
     /** 一般错误码 */
