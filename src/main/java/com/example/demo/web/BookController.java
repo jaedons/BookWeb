@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.demo.domain.Book;
+import com.example.demo.domain.Result;
 import com.example.demo.service.BookService;
+import com.example.demo.util.MessageUtil;
 
 /** 控制层 */
 
@@ -40,8 +42,13 @@ public class BookController {
      * </pre>
      */
     @RequestMapping(method = RequestMethod.GET)
-    public List<Book> getBookList() {
-        return bookService.findAll();
+    public Result<List<Book>> getBookList() {
+        List<Book> books = bookService.findAll();
+        if(null == books) {
+            int code = MessageUtil.ERROR_CODE1;
+            return MessageUtil.error(code,"数据为空");
+        }
+        return MessageUtil.success(books);
     }
 
     /**
@@ -49,9 +56,15 @@ public class BookController {
      * 处理 "/book/{id}" 的 GET 请求，用来获取 Book 信息
      */
     @RequestMapping(value="/{id}",method = RequestMethod.GET)
-    public Book getBook(@PathVariable Long id) {
+    public Result<Book> getBook(@PathVariable Long id) {
         LOG.info("查询:id{}",id);
-        return bookService.findById(id);
+        Book book = bookService.findById(id);
+        if(null == book) {
+            int code = MessageUtil.ERROR_CODE1;
+            String message = String.format("未查到id - %d 对应的数据", id);
+            return MessageUtil.error(code,message);
+        }
+        return MessageUtil.success(book);
     }
     
     /**
@@ -80,9 +93,15 @@ public class BookController {
      * 处理 "/update" 的 PUT 请求，用来更新 Book 信息
      */
     @RequestMapping(value="/update",method = RequestMethod.PUT)
-    public Book putBook(@RequestBody Book book) {
+    public Result<Book> putBook(@RequestBody Book book) {
         LOG.info("更改 :book-{}",book.toString());
-        return bookService.update(book);
+        Book bookUpdated = bookService.update(book);
+        if(null == bookUpdated) {
+            int code = MessageUtil.ERROR_CODE1;
+            String message = String.format("s% 插入出现错误", book.toString());
+            return MessageUtil.error(code,message);
+        }
+        return MessageUtil.success(book);
     }
     
     /**
@@ -90,9 +109,15 @@ public class BookController {
      * 处理 "/book/{id}" 的 GET 请求，用来删除 Book 信息
      */
     @RequestMapping(value="/delete/{id}",method = RequestMethod.DELETE)
-    public Book deleteBook(@PathVariable Long id) {
+    public Result<Book> deleteBook(@PathVariable Long id) {
         LOG.info("删除:id-{}",id);
-        return bookService.delete(id);
+        Book bookDeleted = bookService.delete(id);
+        if(null == bookDeleted) {
+            int code = MessageUtil.ERROR_CODE1;
+            String message = String.format("%d 删除出现错误", id);
+            return MessageUtil.error(code,message);
+        }
+        return MessageUtil.success(bookDeleted);
     }
 
 }
