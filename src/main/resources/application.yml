@@ -15,7 +15,7 @@ spring:
     ansi: 
       enabled: detect
 mybatis:
-  mapper-locations: classpath*:mapper/*.xml
+  mapper-locations: classpath*:mybatis/mysql/mapper/*.xml
   type-aliases-page: com.example.demo.mapper
   
 logging:

@@ -114,7 +114,7 @@ public class BookController {
         Book bookDeleted = bookService.delete(id);
         if(null == bookDeleted) {
             int code = MessageUtil.ERROR_CODE1;
-            String message = String.format("%d 删除出现错误", id);
+            String message = String.format("%s 删除出现错误", id.toString().toUpperCase());
             return MessageUtil.error(code,message);
         }
         return MessageUtil.success(bookDeleted);
