@@ -2,6 +2,8 @@ package com.example.demo.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.example.demo.constant.MessageEnum;
 import com.example.demo.domain.Book;
 import com.example.demo.domain.Result;
+import com.example.demo.exception.ContextException;
 import com.example.demo.service.BookService;
 import com.example.demo.util.MessageUtil;
 import com.example.demo.util.RedisUtil;
@@ -47,7 +51,13 @@ public class BookController {
      */
     @SuppressWarnings("unchecked")
     @RequestMapping(method = RequestMethod.GET)
-    public Result<List<Book>> getBookList() {
+    public Result<List<Book>> getBookList(HttpSession session) {
+        String id = session.getId();
+        LOG.info("SESSION_ID:{}",id);
+        Boolean isLogin = (Boolean) session.getAttribute("isLogin");
+        if(null == isLogin || false ==isLogin) {
+            throw new ContextException(MessageEnum.NOT_LOGIN);
+        }
         List<Book> books = (List<Book>) redisUtil.get("all-book");
         if(null == books) {
             books = bookService.findAll();

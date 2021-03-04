@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.util.DateUtil;
 import com.example.demo.util.RedisUtil;
+import com.google.gson.Gson;
 
 /**
  *  自定义拦截器
@@ -30,22 +30,25 @@ public class CustomInterceptor implements HandlerInterceptor {
     
     @Autowired
     private RedisUtil redisUtil;
+    
+    private Gson gson = new Gson();
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         logger.info(" exceute preHandler ");
-        setRedisDateByUri(request);
+//        setRedisDateByUri(request);
         return true; // false 
 //        return HandlerInterceptor.super.preHandle(request, response, handler);
     }
     @SuppressWarnings("unchecked")
     private void setRedisDateByUri(HttpServletRequest request) {
         String uri = request.getRequestURI();
-        Map<String,List<String>> uriMap = (Map<String, List<String>>) redisUtil.get("uri-book");
-        if(null == uriMap) {
-            uriMap = new HashMap<String, List<String>>();
+        Object uriBooks = redisUtil.get("uri-book");
+        Map<String,Object>  uriMap = new HashMap<String, Object>();
+        if(null != uriBooks) {
+            uriMap = gson.fromJson( uriBooks.toString(), Map.class);
         }
-        List<String> uriList = uriMap.get(uri);
+        List<String> uriList = (List<String>) uriMap.get(uri);
         if(null == uriList) {
             uriList = new ArrayList<String>();
         }
