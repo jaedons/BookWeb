@@ -14,8 +14,13 @@ spring:
   output:
     ansi: 
       enabled: detect
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: "JonQ@W#E$"
 mybatis:
-  mapper-locations: classpath*:mybatis/mysql/mapper/*.xml
+#  config-location : classpath:mybatis/mysql/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mysql/mapper/*.xml
   type-aliases-page: com.example.demo.mapper
   
 logging:

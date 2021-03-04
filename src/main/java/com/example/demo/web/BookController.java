@@ -20,6 +20,7 @@ import com.example.demo.domain.Book;
 import com.example.demo.domain.Result;
 import com.example.demo.service.BookService;
 import com.example.demo.util.MessageUtil;
+import com.example.demo.util.RedisUtil;
 
 /** 控制层 */
 
@@ -32,6 +33,9 @@ public class BookController {
     @Qualifier("bookServiceDB")
     private BookService bookService;
 
+    
+    @Autowired
+    private RedisUtil redisUtil;
     /**
      * <pre>
      *  获取 book 列表
@@ -41,9 +45,14 @@ public class BookController {
      *  通过 "/book" 的 GET 请求 ，用来获取 book列表
      * </pre>
      */
+    @SuppressWarnings("unchecked")
     @RequestMapping(method = RequestMethod.GET)
     public Result<List<Book>> getBookList() {
-        List<Book> books = bookService.findAll();
+        List<Book> books = (List<Book>) redisUtil.get("all-book");
+        if(null == books) {
+            books = bookService.findAll();
+            redisUtil.set("all-book", books, 60l);
+        }
         if(null == books) {
             int code = MessageUtil.ERROR_CODE1;
             return MessageUtil.error(code,"数据为空");

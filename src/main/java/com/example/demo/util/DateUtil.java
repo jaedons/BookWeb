@@ -16,6 +16,7 @@ public class DateUtil {
 
     private static SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     private static String dateParttern = "yyyy-MM-dd";
+    
     /** 获取时间*/
     public static String dateToStr(Date date,String pattern) {
         return new SimpleDateFormat(pattern).format(date);
@@ -31,6 +32,9 @@ public class DateUtil {
     }
     /** 获取时间 */
     public static Date strToDate(String dateStr) throws ParseException {
+        if(null == dateStr) {
+            return null;
+        }
         return new SimpleDateFormat(dateParttern).parse(dateStr);
     }
     /** 
@@ -52,5 +56,19 @@ public class DateUtil {
         // Date 数据格式 返回
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(parttern);
         return strToDate(targetDay.format(formatter),parttern);
+    }
+    
+    /**
+     * @param date
+     * @return 1-7 （星期一 - 星期天）
+     */
+    public static int dayOfWeek(Date date) {
+        // 日期格式转换
+        String parttern = "yyyy-MM-dd";
+        String dateStr = dateToStr(date,parttern);
+        // 计算是周几
+        LocalDate localDate = LocalDate.parse(dateStr);
+        DayOfWeek day = localDate.getDayOfWeek();
+        return day.getValue();
     }
 }

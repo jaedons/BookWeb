@@ -41,7 +41,11 @@
     
     <update id="update" parameterType="com.example.demo.domain.Book">
         update t_book 
-        set name = #{name},writer=#{writer},
+        set
+        <if test="name !=null and name !='' and name='22'">
+            name = #{name},
+        </if> 
+        writer=#{writer},
         introduction = #{introduction} ,
         version_date = now()  where id = #{id}
     </update>
